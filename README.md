@@ -57,15 +57,6 @@ The rate of electric charge flow through the main circuit, measured in amperes
 `P=V×I` 
 where `P` is power (watts), `V` is voltage (volts), and `I` is current (amperes).
 
-![[output3.png]]
-
-> `Main-energy-wh` is a new feature which will be explained in the following part. 
-
-Almost most of the features and the target are left-skewed; the bulk of the data is concentrated toward the low end of the scale, with a long tail extending toward higher values. This reflects the nature of household consumption: most minutes the household is idle or drawing minimal power, while occasional appliance usage produces the high-value tail.
-
-The original `Global_active_power` exhibits a bimodal distribution with two peaks, one for idle periods (near-zero consumption) and one for active periods (moderate appliance usage). After subtracting the `sub-meterings`, the resulting `Main_energy_wh` exhibits a single-peaked, left-skewed distribution. This change occurs because removing the concentrated high-power events (water heating, AC, laundry) eliminates the second mode, leaving only the diffuse low-level background signal from many small appliances.
-
-
 # File Execution Order
 
 1. `imports`
