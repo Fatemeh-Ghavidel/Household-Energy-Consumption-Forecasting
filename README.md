@@ -60,18 +60,11 @@ where `P` is power (watts), `V` is voltage (volts), and `I` is current (am
 # File Execution Order
 
 1. `imports`
-2. `data_ingestion`
+2. `data-ingestion`
 3. `feature-engineering`
 4. `data-analysis`
-5. `data_processing`
-6. `model_building`
+5. `data-processing`
+6. `model-building`
 
 
        
-
-
-
-
-
-
-`The Linear Regression model serves as a **benchmark**. Its performance reflects how much of the consumption signal can be explained by a purely linear combination of temporal features. If XGBoost (a nonlinear model) significantly outperforms it, that indicates the presence of nonlinear interactions between features — for example, the effect of hour depends on season, or the effect of dayofweek depends on month. This comparison justifies the use of tree-based models in the later stages of the project.`
