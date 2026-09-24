@@ -1,5 +1,5 @@
 #################################### MODEL BUILDING ####################################
-#### NAN VALUES MITIGATION
+#### NAN VALUE MITIGATION
 #### FEATURE ENGINEERING AND DATA PROCESSING 
 #### DATA PREPARATION FOR MODELING
 #### LINEAR REGRESSION 
@@ -7,7 +7,7 @@
 
 
 #===========================================================================================
-        #%% Nan Values mitigation
+        #%% Nan value mitigation
 df['Main_energy_wh'] = df['Main_energy_wh'].interpolate(
     mehtod = 'time', 
     limit_direction= 'both')
@@ -15,11 +15,10 @@ df['Main_energy_wh'] = df['Main_energy_wh'].interpolate(
 
 
 #===========================================================================================
-        #%% Feature eng and data processing 
+        #%% Feature engineering and data processing 
 df = create_fourier_features(df)
 df = create_time_series_features(df)
 df = create_lag_features(df)
-
 
 df['lag1year'] = df['lag1year'].fillna(df['Main_energy_wh'].median())
 df['lag2year'] = df['lag2year'].fillna(df['Main_energy_wh'].median())
@@ -28,7 +27,7 @@ df['lag3year'] = df ['lag3year'].fillna(df['Main_energy_wh'].median())
 
 
 #===========================================================================================
-        #%%Data Prepration for modeling 
+        #%% Data preparation for modeling 
 #Categorical features conversion
 df = pd.get_dummies(df)
 #Features and target column names
@@ -80,10 +79,9 @@ time_series_split(train)
 
 
 
-
 #===========================================================================================
-        #%% Linear Regression model
-# Linear regression  training 
+        #%% Linear regression model
+#Linear regression training 
 def train_linear_regression(train, features_linear_reg, target):
         
         X_train = train[features_linear_reg]
@@ -111,7 +109,7 @@ def train_linear_regression(train, features_linear_reg, target):
 
 y_test, y_test_pred  =train_linear_regression(train, features_linear_reg, target)
 
-# Linear regression evaluation
+#Linear regression evaluation
 def linear_reg_eval(y_test, y_test_pred):
         # MAE: Average error in Wh 
         mae = mean_absolute_error(y_test, y_test_pred)
@@ -122,7 +120,6 @@ def linear_reg_eval(y_test, y_test_pred):
         print(f"RMSE: {rmse:.2f} Wh")
 
 linear_reg_eval(y_test, y_test_pred)
-
 
 
 
@@ -203,7 +200,6 @@ def plot_feature_importance(xgb_reg):
 
 plot_feature_importance(xgb_reg_2)
 
-
 #Make prediction with final XGBoost model on test set
 def pred_xgboost_model(test, features_xgb_reg, xgb_reg, target):
 
@@ -252,4 +248,4 @@ xgboost_eval(test, y_test, target='Main_energy_wh')
 
 
 
-# %%
+#%%
